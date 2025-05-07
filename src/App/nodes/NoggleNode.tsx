@@ -16,6 +16,15 @@ import type { NoggleNode as NoggleNodeData } from '../types.ts';
 // }
 
 function NoggleNode({ id, data }: NodeProps<NoggleNodeData>) {
+  const [nodeStyle, setNodeStyle] = useState({ color: "#000000" });
+
+  const handleNodeColorChange = (newColor: string) => {
+    setNodeStyle((prevStyle) => ({
+      ...prevStyle,
+      color: newColor,  // Update the node's color
+    }));
+  };
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Auto-focus the input field on mount

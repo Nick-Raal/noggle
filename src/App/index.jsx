@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState} from 'react';
 
 import {
   ReactFlow,
@@ -18,6 +18,7 @@ import NoggleNode from './nodes/NoggleNode'
 import NoggleEdge from './edges/NoggleEdge'
  
 import { initialEdges, initialNodes } from './initialElements';
+import ContextMenu from '../contextmenu';
  
 const MIN_DISTANCE = 150;
 
@@ -38,6 +39,8 @@ const Flow = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { getInternalNode } = useReactFlow();
   const { screenToFlowPosition } = useReactFlow();
+  const [menu, setMenu] = useState(null);
+  const ref = useRef(null);
  
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -183,9 +186,34 @@ const Flow = () => {
    
       edgeReconnectSuccessful.current = true;
     }, []);
+
+    const onNodeContextMenu = useCallback(
+      (event, node) => {
+        // Prevent native context menu from showing
+        event.preventDefault();
+   
+        // Calculate position of the context menu. We want to make sure it
+        // doesn't get positioned off-screen.
+        const pane = ref.current.getBoundingClientRect();
+        setMenu({
+          id: node.id,
+          top: event.clientY < pane.height - 200 && event.clientY,
+          left: event.clientX < pane.width - 200 && event.clientX,
+          right: event.clientX >= pane.width - 200 && pane.width - event.clientX,
+          bottom:
+            event.clientY >= pane.height - 200 && pane.height - event.clientY,
+        });
+      },
+      [setMenu],
+    );
+   
+    // Close the context menu if it's open whenever the window is clicked.
+    const onPaneClick = useCallback(() => setMenu(null), [setMenu]);
+
   return (
     <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
     <ReactFlow
+      ref={ref}
       nodes={nodes}
       edges={edges}
       onNodesChange={onNodesChange}
@@ -197,13 +225,14 @@ const Flow = () => {
       edgeTypes={edgeTypes}
       onConnectEnd={onConnectEnd}
       style={{ backgroundColor: "#F7F9FB" }}
-      snapToGrid
       onReconnect={onReconnect}
       onReconnectStart={onReconnectStart}
       onReconnectEnd={onReconnectEnd}
+      onNodeContextMenu={onNodeContextMenu}
       fitView
     >
       <Background  />
+      {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
       <Controls></Controls>
     </ReactFlow>
     </div>

@@ -20,7 +20,7 @@ body,
 .react-flow__node-Noggle {
   background: rgb(255, 255, 255);
   border-radius: 1px;
-  border: dotted;
+  border: none;
   padding: 6px 10px;
   font-weight: 700;
 }
