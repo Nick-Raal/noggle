@@ -9,6 +9,7 @@ import {
   ReactFlowProvider,
   useStoreApi,
   useReactFlow,
+  reconnectEdge,
   Controls,
 } from '@xyflow/react';
  
@@ -141,7 +142,7 @@ const Flow = () => {
     const onConnectEnd = useCallback(
       (event, connectionState) => {
         // when a connection is dropped on the pane it's not valid
-        if (!connectionState.isValid) {
+        if (!connectionState.isValid && edgeReconnectSuccessful.current) {
           // we need to remove the wrapper bounds, in order to get the correct position
           const id = getId();
           const { clientX, clientY } =
