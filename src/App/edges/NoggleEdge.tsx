@@ -1,19 +1,47 @@
-import { BaseEdge, BezierEdge, EdgeProps, getStraightPath } from '@xyflow/react';
+import React, { type FC } from 'react';
+import {
+  getBezierPath,
+  EdgeLabelRenderer,
+  BaseEdge,
+  type EdgeProps,
+  type Edge,
+} from '@xyflow/react';
  
-function NoggleEdge(props: EdgeProps) {
-  const { sourceX, sourceY, targetX, targetY } = props;
- 
-  const [edgePath] = getStraightPath({
+const NoggleEdge: FC<EdgeProps<Edge<{ label: string }>>> = ({
+  id,
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  data,
+}) => {
+  const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
+    sourcePosition,
     targetX,
     targetY,
+    targetPosition,
   });
  
-  return <BaseEdge path={edgePath} type="simplebezier" style={{
-    stroke: '#000',        // or your desired color
-    strokeWidth: 40,        // increase thickness here
-  }} {...props} />;
-}
+  return (
+    <>
+      <BaseEdge id={id} path={edgePath} />
+      <EdgeLabelRenderer>
+        <div
+          style={{
+            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+          }}
+          className="edge-label-renderer__custom-edge nodrag nopan"
+        >
+        {data && data.label}
+        slop
+        </div>
+      </EdgeLabelRenderer>
+    </>
+  );
+};
  
 export default NoggleEdge;

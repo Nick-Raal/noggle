@@ -27,9 +27,8 @@ export default function ContextMenu({
   }, [id, getNode, addNodes]);
 
   const changeNodeColor = useCallback((event) => {
-    const node = getNode(id);
     const newColor = event.target.value;
-
+    console.log("update color")
     // Update the node's style with the new color
     setNodes((nodes) =>
       nodes.map((n) =>
@@ -65,7 +64,6 @@ export default function ContextMenu({
       <input
         type="color"
         onChange={changeNodeColor}  // Call changeNodeColor function on color change
-        defaultValue={0}  // Use defaultValue or current color
       />
     </div>
   );

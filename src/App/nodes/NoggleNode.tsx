@@ -46,7 +46,6 @@ function NoggleNode({ id, data }: NodeProps<NoggleNodeData>) {
     <div style={{ padding: 10, background: 'white' }}>
       <input id="text" name="text" className="input" style={{width: 80, right:50}}/> 
       <Handle type="source" position={Position.Bottom} id="a" />
-      <Handle type="target" position={Position.Top} id="a" />
     </div>
   );
 }

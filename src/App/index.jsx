@@ -18,7 +18,7 @@ import NoggleNode from './nodes/NoggleNode'
 import NoggleEdge from './edges/NoggleEdge'
  
 import { initialEdges, initialNodes } from './initialElements';
-import ContextMenu from '../contextmenu';
+import ContextMenu from './contextmenu';
  
 const MIN_DISTANCE = 150;
 
@@ -163,7 +163,7 @@ const Flow = () => {
    
           setNodes((nds) => nds.concat(newNode));
           setEdges((eds) =>
-            eds.concat({ id, source: connectionState.fromNode.id, target: id }),
+            eds.concat({ id, type: 'Noggle', source: connectionState.fromNode.id, target: id}),
           );
         }
       },
@@ -229,6 +229,7 @@ const Flow = () => {
       onReconnectStart={onReconnectStart}
       onReconnectEnd={onReconnectEnd}
       onNodeContextMenu={onNodeContextMenu}
+      connectionMode='loose'
       fitView
     >
       <Background  />
