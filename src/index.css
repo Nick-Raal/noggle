@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  background-color: #ffffff;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.header {
+  color: #cdcdcd;
+}
+
+.react-flow__node-Noggle {
+  background: rgb(255, 255, 255);
+  border-radius: 1px;
+  border: dotted;
+  padding: 6px 10px;
+  font-weight: 700;
+}
+
+.react-flow__handle.target {
+  top: 50%;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0%;
+}
+
+.react-flow__handle.source {
+  top: 50%;
+  left: 50%; /* Optionally center horizontally */
+  transform: translateX(100%); /* Center horizontally */
+  width: 40px; /* Fixed width */
+  height: 40px; /* Fixed height */
+  opacity: 80%;
+  background: #1c1818;
+  position: absolute; /* Position it correctly */
+  border-radius: 4px; /* Optional, adds rounded corners */
+}
+
+.react-flow .react-flow__connectionline {
+  stroke: #1c1818;        /* line color */
+  stroke-width: 8;     /* thickness */
+  stroke-dasharray: 0; /* dashed effect if desired */
+}
+
+.react-flow .react-flow__edgeline {
+  stroke: #1c1818;        /* line color */
+  stroke-width: 40;     /* thickness */
+  stroke-dasharray: 0; /* dashed effect if desired */
+}
+
+.inputWrapper {
+  display: flex;
+  height: 20px;
+  z-index: 1;
+  position: relative;
+  pointer-events: auto;
+}
+
+.dragHandle {
+  background: rgb(255, 255, 255);
+  width: 14px;
+  height: 100%;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  pointer-events: all;
+}
+
+.input {
+  border: none;
+  outline: none;
+  background: transparent;
+  border-bottom: 1px solid transparent; /* optional to preserve layout */
+  transition: border-bottom 0.2s ease;
+}
+
+.input:focus {
+  border-bottom: 1px solid #000; /* or your desired color */
+  background: transparent;       /* keep background transparent */
+  outline: none;
+}
