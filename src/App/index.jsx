@@ -11,6 +11,7 @@ import {
   useReactFlow,
   reconnectEdge,
   Controls,
+  StepEdge
 } from '@xyflow/react';
  
 import '@xyflow/react/dist/style.css';
@@ -27,6 +28,7 @@ const nodeTypes = {
 };
 
 const edgeTypes = {
+  default: NoggleEdge,
   Noggle: NoggleEdge
 }
 let id = 1;

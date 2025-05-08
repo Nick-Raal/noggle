@@ -27,8 +27,8 @@ export default function ContextMenu({
   }, [id, getNode, addNodes]);
 
   const changeNodeColor = useCallback((event) => {
+    console.log("update color");
     const newColor = event.target.value;
-    console.log("update color")
     // Update the node's style with the new color
     setNodes((nodes) =>
       nodes.map((n) =>
@@ -37,13 +37,13 @@ export default function ContextMenu({
               ...n,
               style: {
                 ...n.style,
-                color: newColor, // Update the color property
+                color: newColor,
               },
             }
           : n
       )
     );
-  }, [id, getNode, setNodes]);
+  }, [id, setNodes]); // Removed getNode since it's not used
  
   const deleteNode = useCallback(() => {
     setNodes((nodes) => nodes.filter((node) => node.id !== id));
@@ -63,7 +63,8 @@ export default function ContextMenu({
       <button onClick={deleteNode}>delete</button>
       <input
         type="color"
-        onChange={changeNodeColor}  // Call changeNodeColor function on color change
+        onChange={changeNodeColor}
+        defaultValue={getNode(id)?.style?.color || "#FFFFFF"}
       />
     </div>
   );

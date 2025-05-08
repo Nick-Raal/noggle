@@ -107,6 +107,14 @@ body,
   transition: border-bottom 0.2s ease;
 }
 
+.inputedge {
+  border: solid;
+  outline: none;
+  background: rgb(255, 255, 255);
+  border-bottom: 1px solid transparent; /* optional to preserve layout */
+  transition: border-bottom 0.2s ease;
+}
+
 .input:focus {
   border-bottom: 1px solid #000; /* or your desired color */
   background: transparent;       /* keep background transparent */
