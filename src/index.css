@@ -76,7 +76,7 @@ body,
 }
 
 .react-flow .react-flow__edgeline {
-  stroke: #1c1818;        /* line color */
+  stroke: #ff0000;        /* line color */
   stroke-width: 40;     /* thickness */
   stroke-dasharray: 0; /* dashed effect if desired */
 }

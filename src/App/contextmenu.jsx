@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useReactFlow } from '@xyflow/react';
  
 export default function ContextMenu({
@@ -10,6 +10,7 @@ export default function ContextMenu({
   ...props
 }) {
   const { getNode, setNodes, addNodes, setEdges } = useReactFlow();
+  const [change, setChange] = useState('')
   const duplicateNode = useCallback(() => {
     const node = getNode(id);
     const position = {
@@ -63,7 +64,7 @@ export default function ContextMenu({
       <button onClick={deleteNode}>delete</button>
       <input
         type="color"
-        onChange={changeNodeColor}
+        onChange={(e) => setChange(e.value)}
         defaultValue={getNode(id)?.style?.color || "#FFFFFF"}
       />
     </div>
