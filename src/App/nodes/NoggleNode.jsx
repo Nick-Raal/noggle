@@ -48,4 +48,4 @@ function NoggleNode({  id, data,}) {
   );
 }
 
-export default NoggleNode;
+export default (NoggleNode);

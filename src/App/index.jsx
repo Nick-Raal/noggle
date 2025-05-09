@@ -209,7 +209,7 @@ const Flow = () => {
       [setMenu],
     );
    
-    // Close the context menu if it's open whenever the window is clicked.
+    // // Close the context menu if it's open whenever the window is clicked.
     const onPaneClick = useCallback(() => setMenu(null), [setMenu]);
 
   return (
@@ -235,7 +235,7 @@ const Flow = () => {
       fitView
     >
       <Background  />
-      {menu && <ContextMenu onClick={onPaneClick} {...menu} />}
+      {menu && <ContextMenu {...menu} onClick={() => onPaneClick()} />}
       <Controls></Controls>
     </ReactFlow>
     </div>

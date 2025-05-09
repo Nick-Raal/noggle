@@ -9,6 +9,7 @@ import {
   useInternalNode,
 } from '@xyflow/react';
 
+// @ts-ignore
 import { getEdgeParams } from '../initialElements.js';
  
 const NoggleEdge: FC<EdgeProps<Edge<{ label:string }>>> = ({
